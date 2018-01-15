@@ -30,7 +30,7 @@ void insertion_sort_generic(RandomIt begin, RandomIt end)
 }
 
 
-int main()
+/*int main()
 {
   vector<int> nums{3, 1, 10, 2, 90, 36, 24};
   vector <string> str{"hello", "world", "moon", "sun"};
@@ -49,4 +49,4 @@ int main()
   copy(str.begin(), str.end(), ostream_iterator<string>(cout, " "));
 
   return 0;
-}
+}*/
