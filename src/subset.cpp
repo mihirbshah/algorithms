@@ -8,7 +8,7 @@
 #include "subset.h"
 
 using namespace subset;
-
+/*
 int main()
 {
 	std::vector<std::string> v1({"life", "universe", "everything"});
@@ -30,4 +30,4 @@ int main()
 	print_container(v_unrank.begin(), v_unrank.end());
 
 	return 0;
-}
+}*/
