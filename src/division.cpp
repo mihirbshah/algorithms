@@ -51,7 +51,7 @@ std::pair<int, int> division(int dividend, int divisor)
 	return std::make_pair(quotient, remainder);
 }
 
-int main()
+/*int main()
 {
 	std::pair<int, int> res1 = division(43, 3);
 	std::cout << "43 / 3 = quotient[" <<  res1.first << "], remainder[" << res1.second << "]" << std::endl;
@@ -81,7 +81,7 @@ int main()
 	std::cout << "23 / 23 = quotient[" <<  res9.first << "], remainder[" << res9.second << "]" << std::endl;
 
 	return 0;
-}
+}*/
 
 
 

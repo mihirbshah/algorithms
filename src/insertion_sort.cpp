@@ -21,12 +21,8 @@ template <class RandomIt>
 void insertion_sort_generic(RandomIt begin, RandomIt end)
 {
 	for (RandomIt i = begin + 1; i != end; ++i)
-	{
 		for (RandomIt j = i; (j > begin) && ( (*j) < (*(j-1)) ); --j)
-		{
 			swap(*j, *(j-1));
-		}
-	}
 }
 
 
