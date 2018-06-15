@@ -8,7 +8,7 @@
 #include <iostream>
 #include "heap.h"
 
-int main()
+/*int main()
 {
 	heap h;
 	h.make_heap({30, 20, 10, 45});
@@ -17,6 +17,6 @@ int main()
 	h.print();
 
 	return 0;
-}
+}*/
 
 
