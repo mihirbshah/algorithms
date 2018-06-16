@@ -88,8 +88,8 @@ string zigzag(const string& s, int rows)
 	return display_matrix(matrix);
 }
 
-int main()
+/*int main()
 {
 	string s = "ABCDE"; int rows = 4;
 	cout << "input: " << s << ", result: " << zigzag(s, rows) << "\n";
-}
+}*/
