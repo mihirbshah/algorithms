@@ -59,7 +59,7 @@ string longest_palindromic_substr(const string& s)
 	return max_size ? s.substr(r.first, 1 + r.second - r.first) : "";
 }
 
-int main()
+/*int main()
 {
 	vector<string> v = {"abcddcbaxxxyyyyyyxxx", "xyabba", "sjfgkfdksffl", "abad", "xyaab", "daba", "aaa", "aa", "a", "", "aaaa"};
 	//string s = "abcddcbaxxxyyyyyyxxx";
@@ -75,4 +75,4 @@ int main()
 	  cout << "longest palindromic substring for: " << s << " -> " << longest_palindromic_substr(s) << "\n";
 
 	return 0;
-}
+}*/
