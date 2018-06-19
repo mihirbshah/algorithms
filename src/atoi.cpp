@@ -131,7 +131,7 @@ int32_t my_atoi(string str)
 }
 
 
-int main()
+/*int main()
 {
 	vector<string> v = {"9128347233212",
 						"-91283472332",
@@ -160,4 +160,4 @@ int main()
 	//string s = "    +0a32";
 	for (auto s : v)
 		cout << "input: " << s << ", result: " << my_atoi(s) << "\n";
-}
+}*/
