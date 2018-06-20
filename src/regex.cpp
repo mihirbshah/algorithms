@@ -52,6 +52,8 @@ Output: false
  */
 
 // https://leetcode.com/problems/regular-expression-matching/description/
+// solution as implemented in - https://www.youtube.com/watch?v=l3hda49XcDE
+
 
 
 #include <iostream>
@@ -65,6 +67,8 @@ using MatchMatrix = vector<vector<bool> >;
 
 namespace
 {
+// empty char represents a null char we prepend to the beginning of the
+// input text and patterns to make algorithm easier to implement
 const char empty_char = ' ';
 
 void disp_matrix(const MatchMatrix& m)
@@ -83,6 +87,7 @@ void disp_matrix(const MatchMatrix& m)
 
 bool validate_text(const string& s)
 {
+	// text only allows chars a-z
 	for (int i = 0; i < s.length(); ++i)
 		if (s[i] < 'a' || s[i] > 'z') return false;
 
@@ -96,50 +101,55 @@ bool validate_regex(const string& p)
 
 	// every * should be preceded by [a-z] or .
 	for (int i = 0; i < p.length(); ++i)
-		if (p[i] == '*' && p[i-1] == '*') return false;
+		if ((p[i] == '*' && p[i-1] == '*') || p[i] < 'a' || p[i] > 'z') return false;
 
 	return true;;
 }
 
 bool is_match(string s, string p)
 {
+	// if text or pattern validation fails, return false
 	if (!validate_text(s) || !validate_regex(p)) return false;
 
+	// prepend default null char to text and pattern to cater to simplfy code
 	s = empty_char + s; p = empty_char + p;
 
 	size_t s_len = s.length();
 	size_t p_len = p.length();
 
+	// matrix is a 2D matrix of bools, with each cell [i,j] representing when pattern[0:j]
+	// matches text[0:i]
+	// pattern runs horizontal (cols) and text runs vertical (rows)
 	MatchMatrix matrix(s_len, vector<bool>(p_len, false));
 
-	//cout << "s_len: " << s_len << ", p_len: " << p_len << "\n";
+	// [0,0] is always true - base case where text and pattern are both null
 	matrix[0][0] = true;
-	//for (int i = 1; i < p_len; ++i) matrix[0][i] = false;
+
+	// first column is false because null pattern cannot match non-null text
 	for (int i = 1; i < s_len; ++i) matrix[i][0] = false;
 
 	for (int i = 0; i < s_len; ++i)
 	{
+		// start from 1 because we already pre-filled column 0
 		for (int j = 1; j < p_len; ++j)
 		{
-			//cout << "i: " << i << ", j: " << j << "\n";
-			//cout << "Matching " << s[i] << " and " << p[j] << "\n";
+			// p[j] is an english char
 			if (p[j] >= 'a' && p[j] <= 'z')
-			{
 				matrix[i][j] = (s[i] == p[j]) ? matrix[i-1][j-1] : false;
-			}
+			// p[j] is .
 			else if (p[j] == '.')
-			{
+				// . matches anything except our default null char
 				matrix[i][j] = s[i] == empty_char ? false : matrix[i-1][j-1];
-			}
 			else if (p[j] == '*')
-			{
+				// p[j] is * then we have 2 cases -
+				// 1. zero occurrence of p[j-1] in text
+				// 2. one or more occurrence of p[j-1] in text
+				// The bitwise OR operation below represents the greedy pattern match for *
+				// We try to match as much of the '*' as we can (case 1 or 2).
 				matrix[i][j] =
 						((p[j-1] == s[i] || p[j-1] == '.') && (s[i] != empty_char) ? matrix[i-1][j] : false) | matrix[i][j-2];
-			}
 			else
-			{
 				matrix[i][j] = false;
-			}
 		}
 	}
 
