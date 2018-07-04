@@ -157,7 +157,7 @@ bool is_match(string s, string p)
 	return matrix[s_len - 1][p_len - 1];
 }
 
-int main()
+/*int main()
 {
 	vector<pair<string, string> > inputs;
 	inputs.push_back(make_pair("aa", "a"));
@@ -188,5 +188,5 @@ int main()
 		//cout << "processing " << p.first << ", " << p.second << "\n";
 		cout << "text: " << p.first << ", pattern: " << p.second << ", match: " << (is_match(p.first, p.second) ? "True" : "False") << "\n";
 	}
-}
+}*/
 
