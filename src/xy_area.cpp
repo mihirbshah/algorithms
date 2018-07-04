@@ -61,10 +61,11 @@ int max_area(const vector<int>& height)
 	return area;
 }
 
+/*
 int main()
 {
 	vector<int> height = {6};
 	cout << "max area (brute force): " << max_area_bruteforce(height) << "\n";
 	cout << "max area (linear): " << max_area(height) << "\n";
 }
-
+*/
