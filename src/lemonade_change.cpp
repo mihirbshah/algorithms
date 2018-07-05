@@ -63,8 +63,10 @@ bool lemonade_change(const vector<int>& bills)
 	return true;
 }
 
+/*
 int main()
 {
 	cout << "lemonade_change: " << lemonade_change({5,5,5,5,10,20,10}) << "\n";
 }
+*/
 
