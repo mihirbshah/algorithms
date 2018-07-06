@@ -3,6 +3,18 @@
  *
  *  Created on: Jul 4, 2018
  *      Author: mihir
+ *
+ *  https://leetcode.com/problems/score-after-flipping-matrix/description/
+ *
+ *  We have a two dimensional matrix A where each value is 0 or 1.
+
+A move consists of choosing any row or column, and toggling each value in that row or column: changing all 0s to 1s, and all 1s to 0s.
+
+After making any number of moves, every row of this matrix is interpreted as a binary number, and the score of the matrix is the sum of these numbers.
+
+Return the highest possible score.
+
+ *
  */
 
 #include <iostream>
@@ -156,6 +168,14 @@ row get_col(const matrix& m, short c)
 	return col;
 }
 
+/*
+ * In order to get the highest score, we need to maximize each number (row)
+ * A '1' in MSB has more weightage than sum of all the 1's in all other positions i.e.
+ * 2^n > 2^(n-1) + 2^(n-2) + .. 2^0
+ * So, we need to start by making all the numbers in the first column 1's
+ * And then try getting as many 1's as possible in the subsequent columns while
+ * still maintaining the previous columns values.
+ */
 int matrix_score(matrix& m)
 {
 	populate_powers();
@@ -185,6 +205,7 @@ int matrix_score(matrix& m)
 	return score;
 }
 
+/*
 int main()
 {
 	//matrix m = {{0, 0, 1, 1}, {1, 0, 1, 0}, {1, 1, 0, 0}};
@@ -196,3 +217,4 @@ int main()
 	cout << "matrix_score: " << matrix_score(m) << "\n";
 	//cout << "matrix_score (their): " << matrixScore(m) << "\n";
 }
+*/
