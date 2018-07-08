@@ -97,7 +97,7 @@ int min_subarray(const NumList& nums, int k)
 	return -1;
 }
 
-
+/*
 int main()
 {
 	NumList nums = {1, 3, 10, -3, -11, 7, 16, -2};
@@ -106,3 +106,4 @@ int main()
 	//cout << "nums.size: " << nums.size() << "\n";
 	cout << "size of minimum subarray with sum at least [" << k << "]: " << min_subarray_using_prefixes(nums, k) << "\n";
 }
+*/
