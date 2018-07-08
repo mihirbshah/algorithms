@@ -11,15 +11,28 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
+#include <sstream>
+
+using namespace std;
 
 template <class RandomIt>
 void print_container(RandomIt begin, RandomIt end)
 {
-	typedef typename std::iterator_traits<RandomIt>::value_type i_type;
-	if (begin == end) std::cout << "NULL";
-	else std::copy(begin, end, std::ostream_iterator<i_type>(std::cout, " "));
+	typedef typename iterator_traits<RandomIt>::value_type i_type;
+	if (begin == end) cout << "NULL";
+	else copy(begin, end, ostream_iterator<i_type>(cout, " "));
 }
 
+template <class RandomIt>
+string stringify_container(RandomIt begin, RandomIt end)
+{
+	// TODO replace this with something faster. stringstream is very slow
+	stringstream s;
+	typedef typename iterator_traits<RandomIt>::value_type i_type;
+	if (begin == end) return "NULL";
+	copy(begin, end, ostream_iterator<i_type>(s, " "));
+	return s.str();
+}
 
 
 
