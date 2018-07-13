@@ -59,8 +59,10 @@ bool buddy_strings(string a, string b)
 	return a == b;
 }
 
+/*
 int main()
 {
 	string a = "abab", b = "abab";
 	cout << "buddy_strings: " << buddy_strings(a, b) << "\n";
 }
+*/
