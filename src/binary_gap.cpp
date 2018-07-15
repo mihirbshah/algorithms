@@ -44,8 +44,10 @@ int binary_gap(int n)
 	return maxcnt;
 }
 
+/*
 int main()
 {
 	for (auto i : {22, 5, 6, 8, 343})
 		cout << "bin_gap[" << i << "]: " << binary_gap(i) << "\n";
 }
+*/
