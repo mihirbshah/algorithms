@@ -73,8 +73,9 @@ int mirror_reflection(int p, int q)
 		rightleft = !rightleft;
 	}
 }
-
+/*
 int main()
 {
 	cout << "mirror reflection: " << mirror_reflection(2,1) << "\n";
 }
+*/
