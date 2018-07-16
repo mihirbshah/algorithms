@@ -47,8 +47,6 @@ bool reordered_power_of_2(long n)
 	int numdigits = numstr.size();
 	int max_binary_digits = (3 * numdigits) + ceil(numdigits / 3.0);
 	long mask = 1;
-	string multiple_of_2_str;
-	long multiple_of_2 = -1;
 
 	for (int i = 0; i < max_binary_digits; ++i)
 		if (numstr == bucket_sort(to_string(mask << i))) return true;

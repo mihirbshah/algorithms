@@ -38,7 +38,7 @@ int default_distanct = -1;
  * variable until we hit the target distance. When we hit the target distance at a particular node, we
  * add that node to the result set.
  */
-int _kdistance(TreeNode* node, TreeNode* target, int distance, int k, vector<int>& result)
+int _kdistance(TreeUtils::TreeNode* node, TreeUtils::TreeNode* target, int distance, int k, vector<int>& result)
 {
 	// safety check
 	if (!node) return default_distanct;
@@ -145,7 +145,7 @@ int _kdistance(TreeNode* node, TreeNode* target, int distance, int k, vector<int
 	}
 }
 
-vector<int> kdistance(TreeNode* root, TreeNode* target, int k)
+vector<int> kdistance(TreeUtils::TreeNode* root, TreeUtils::TreeNode* target, int k)
 {
 	vector<int> result;
 	_kdistance(root, target, -1, k, result);
@@ -158,9 +158,9 @@ int main()
 	//TreeVals vals = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, null, null, null, null, 12, 13, 14, null};
 	//TreeVals vals = {};
 	TreeVals vals = {0,2,1,null,null,3};
-	TreeNode* root = make_tree(vals);
+	TreeUtils::TreeNode* root = make_tree(vals);
 	//preorder(root);
-	TreeNode* target = new TreeNode(3);
+	TreeUtils::TreeNode* target = new TreeUtils::TreeNode(3);
 	int k = 3;
 	vector<int> result = kdistance(root, target, k);
 	cout << "kdistance: " << stringify_container(result.begin(), result.end());
