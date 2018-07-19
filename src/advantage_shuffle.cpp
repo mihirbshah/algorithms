@@ -135,7 +135,7 @@ List advantage_shuffle(List a, List b)
 	return res;
 }
 
-
+/*
 int main()
 {
 	//List r = advantage_shuffle({12, 24, 8, 32}, {13, 25, 32, 11});
@@ -145,3 +145,4 @@ int main()
 
 	print_container(r.begin(), r.end());
 }
+*/
