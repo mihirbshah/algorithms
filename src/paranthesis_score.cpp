@@ -99,8 +99,10 @@ int paranthesis_score(const string& s)
 	return stk.top();
 }
 
+/*
 int main()
 {
 	for (auto s : {"()", "(())", "()()", "((()))", "((())(()))", "(()())", "()(())", "()()(())"})
 		cout << "paranthesis score for [" << s << "]: " << paranthesis_score(s) << "\n";
 }
+*/
