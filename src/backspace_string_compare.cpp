@@ -90,7 +90,9 @@ bool backspace_compare(string s, string t)
 	return compare(s, t);
 }
 
+/*
 int main()
 {
 	cout << "backspace_compare: " << backspace_compare("a##b", "#a#c") << "\n";;
 }
+*/
