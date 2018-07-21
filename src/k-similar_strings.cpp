@@ -94,6 +94,7 @@ int ksimilarity(string a, string b)
 	return b.size();
 }
 
+/*
 int main()
 {
 	vector<vector<string> > inputs = {{"ab", "ba"},
@@ -109,3 +110,4 @@ int main()
 	for (auto p : inputs)
 		cout << "kdistance for a[" << p[0] << "] and b[" << p[1]  << "]: " << ksimilarity(p[0], p[1]) << "\n";
 }
+*/
