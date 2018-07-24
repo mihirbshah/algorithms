@@ -54,6 +54,7 @@ int max_dist_to_closest(const vector<int>& seats)
 	return max_dist;
 }
 
+/*
 int main()
 {
 	vector<vector<int>> inputs = {{1,0,0,0,1,0,1},
@@ -65,4 +66,4 @@ int main()
 	for (auto v : inputs)
 		cout << "max_dist to closest for [" << stringify_container(v.begin(), v.end()) << "]: " << max_dist_to_closest(v) << "\n";
 }
-
+*/
