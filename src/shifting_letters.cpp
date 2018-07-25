@@ -45,6 +45,7 @@ string shifting_letters(string s, vector<int> shifts)
 	return s;
 }
 
+/*
 int main()
 {
 	string s = "abc";
@@ -61,3 +62,4 @@ int main()
 		  cout << "shifting_letters for[" << s << "] with shift[" << stringify_container(shift.begin(), shift.end()) << "] is "
 		       << shifting_letters(s, shift) << "\n";
 }
+*/
