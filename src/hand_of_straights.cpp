@@ -89,7 +89,7 @@ bool hand_of_straights(vector<int> hand, int w)
 	return true;
 }
 
-
+/*
 int main()
 {
 	vector<pair<vector<int>, int>> inputs = {make_pair(vector<int>({1,2,3,6,2,3,4,7,8}), 3),
@@ -105,3 +105,4 @@ int main()
 			 << p.second << " is: " << hand_of_straights(p.first, p.second) << "\n";
 	}
 }
+*/
