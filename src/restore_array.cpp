@@ -6,6 +6,8 @@ using namespace std;
 
 int dp[100001] = {};
 
+/* https://leetcode.com/problems/restore-the-array/ */
+
 class Solution
 {
   public:
