@@ -11,10 +11,7 @@ int dp[100001] = {};
 class Solution
 {
   public:
-  Solution(const string& s_, int k_) : s(s_), k(k_) {}
-  ~Solution() {}
-
-  int dfs(int i) 
+  int dfs(string s, int k, int i) 
   {
     cout << "=== i: " << i << " ===\n";
     if (i == s.size())
@@ -46,21 +43,17 @@ class Solution
     return dp[i];
   }
   
-  int numberOfArrays() 
+  int numberOfArrays(string s, int k) 
   {
-    return dfs(0);
+    return dfs(s, k, 0);
   }
-
-  private:
-    string s;
-    int k;
 };
 
 int main()
 {
   string s1 = "1317"; int k1 = 2000;
-  Solution obj(s1, k1);
-  int res = obj.numberOfArrays();
+  Solution obj;
+  int res = obj.numberOfArrays(s1, k1);
   cout << "res: " << res << "\n";
   return 0;
 }
