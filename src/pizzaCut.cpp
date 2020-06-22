@@ -5,8 +5,6 @@
 
 using namespace std;
 
-typedef vector<vector<vector<int>>> IntVector3D;
-typedef vector<vector<int>> IntVector2D;
 
 void print3D(const IntVector3D& mat)
 {
@@ -38,6 +36,9 @@ void print2D(const IntVector2D& mat)
 
 class Solution {
   public:
+    typedef vector<vector<vector<int>>> IntVector3D;
+    typedef vector<vector<int>> IntVector2D;
+    
     int ways(vector<string>& pizza, int k) 
     {
       _m = pizza.size(); 
