@@ -72,6 +72,13 @@ As you can see, it is important to first use the old value of mask[011] to updat
 If we do the reverse i.e. first update mask[011] for hat 'i' and then use its value to update mask[111] then we'd be double counting the value of mask[011] while processing mask[111] for hat 'i'. 
 This is the reason why we need to iterate through the masks in reverse order from 111 -> 011 -> 001 -> 000 for the above example.
 */
+    
+    /*
+    Another possible answer : https://www.geeksforgeeks.org/bitmasking-and-dynamic-programming-set-1-count-ways-to-assign-unique-cap-to-every-person/
+    
+    */
+    
+    
     int numberWays(vector<vector<int>>& hats) {
         vector<vector<int>> h2p(40);
         const int n(hats.size()), mod(1e9 + 7);
