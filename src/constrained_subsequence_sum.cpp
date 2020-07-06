@@ -111,6 +111,8 @@ int constrainedSubsetSum1(const vector<int>& arr, int windowSize)
     // If it is smaller than existing elements in the queue, then it can be a candidate to become the max element
     // for a future window. Thus we insert it in the queue. 
     dq.push_back(i);
+    cout << "dq: " << stringify_container(dq.begin(), dq.end()) << "\n";  
+    cout << "dp: " << stringify_container(dp.begin(), dp.end()) << "\n";  
   }   
   
   return *max_element(dp.begin(), dp.end());
@@ -122,7 +124,8 @@ int main()
   vector<int> v2 = {-1,-2,-3}; int k2 = 1;
   vector<int> v3 = {10,-2,-10,-5,1}; int k3 = 2;
   vector<int> v4 = {-5266,4019,7336,-3681,-5767}; int k4 = 2;
-  int res = constrainedSubsetSum1(v4, k4);
+  vector<int> v5 = {1,-3,9,1,-7,6,8}; int k5 = 2;
+  int res = constrainedSubsetSum1(v5, k5);
   cout << "result: " << res << "\n";
   return 0;
 }
