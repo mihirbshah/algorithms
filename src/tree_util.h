@@ -65,6 +65,11 @@ public:
 		postorder(node->right);
 		cout << node->val << " ";
 	}
+    
+    static bool isLeaf(TreeNode* node)
+    {
+        return !node->left && !node->right;
+    }
 };
 
 #endif
