@@ -8,6 +8,12 @@
 
 using namespace std;
 
+/*
+https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/
+*/
+
+/*
+Mihir's solution - this approach works but its not neat
 namespace
 {
     using TreeNode = TreeUtils::TreeNode;
@@ -92,6 +98,40 @@ private:
         nv = stoi(s.substr(numStart, numEnd - numStart + 1));
     }
 };
+*/
+
+class Solution 
+{
+public:
+    TreeNode* recoverFromPreorder(string s_)
+    {
+        i = 0;
+        s = s_;
+        return preOrder(0);
+    }
+
+private:
+    // depth = the current tree depth that we are processing
+    // j = index of the first digit from current
+    // i = index of the first hyphen from current
+    TreeNode* preOrder(int depth)
+    {
+        int j = s.find_first_of("0123456789", i); 
+        if(j - i != depth) return nullptr;
+        
+        i = s.find_first_of("-", j);
+        int val = stoi(s.substr(j, i - j));
+        
+        TreeNode* root=new TreeNode(val);
+        root->left = preOrder(depth + 1);
+        root->right = preOrder(depth + 1);
+        return root;
+    } 
+    
+    std::string s;
+    int i; 
+};
+
 
 int main()
 {
