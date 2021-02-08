@@ -31,7 +31,6 @@ public:
             while (!q.empty())
             {
                 cell c = q.front();
-                //cout << "Rotten at: [" << c.first << ", " << c.second << "]\n";
                 q.pop();
                 if (isFresh(grid, c.first - 1, c.second)) enqueueFresh(grid, c.first - 1, c.second, tq);
                 if (isFresh(grid, c.first + 1, c.second)) enqueueFresh(grid, c.first + 1, c.second, tq);

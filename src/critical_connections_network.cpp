@@ -22,20 +22,12 @@ public:
             graph[c[1]].push_back(c[0]);
         }
         
-        /*for (const auto& [node, edges] : graph)
-        {
-            cout << node << ": " << stringify_container(edges.begin(), edges.end()) << "\n";
-        }*/
-        
         vector<vector<int>> critical;
         for (const auto& [node, edges] : graph)
         {
-            //cout << "Checking node: " << node << "\n";
             for (const auto& edge : edges)
             {
-                //cout << "\tChecking connection: " << edge << "\n";
                 if (isCritical(graph, node, edge) && node > edge) critical.push_back({node, edge});
-                //cout << "\tcritical size: " << critical.size() << "\n";
             }
         }
         return critical;
@@ -62,9 +54,7 @@ private:
         for (const auto& e : graph[source])
         {
             if (e == target) continue;
-            //cout << "\t\tInspecting edge: [" << source << ", " << e << "]\n";
             ret &= !canReachTarget(graph, e, target, {source});
-            //cout << "\t\tret: " << (ret ? "true" : "false") << "\n";
         }
         
         return ret;
