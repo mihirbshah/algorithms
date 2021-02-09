@@ -61,7 +61,7 @@ private:
 };
 */
 
-
+// Solution copied from https://leetcode.com/problems/lru-cache/discuss/45976/C%2B%2B11-code-74ms-Hash-table-%2B-List
 class LRUCache
 {
 private:
