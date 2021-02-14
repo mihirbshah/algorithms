@@ -20,7 +20,7 @@ public:
     BinOp()
     {
         opmap['+'] = &add;
-        opmap['-'] = &sub;
+        //opmap['-'] = &sub;
         opmap['*'] = &mul;
         opmap['/'] = &divi;
     }
@@ -44,6 +44,7 @@ class Node
 public:
     virtual ~Node () {};
     virtual int evaluate() const = 0;
+    virtual BinOp& getBinOp() = 0;
     string s;
     Node* left = nullptr;
     Node* right = nullptr;
@@ -63,6 +64,8 @@ public:
     {
         bop = new BinOp();
     }
+    
+    BinOp& getBinOp() { return *bop; }
     
 private:
     int postfix(const Node* ptr) const
@@ -120,9 +123,10 @@ private:
 
 int main()
 {
-    vector<string> e({"100","200","+","2","/","5","*","7","+"});
+    vector<string> e({"4","5","7","2","+","-","*"});
     TreeBuilder o;
     Node* node = o.buildTree(e);
+    (node->getBinOp()).registerOp('-', &sub);
     int res = node->evaluate();
     cout << "res: " << res << "\n";
     return 0;
