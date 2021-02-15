@@ -6,7 +6,7 @@
 #include "tree_util.h"
 
 using namespace std;
-using Node = TreeUtils::TreeNode;
+using Node = TreeUtils<char>::TreeNode;
 
 class Solution 
 {
