@@ -83,7 +83,7 @@ public:
     {
         parent[find(a)] = find(b);
     }
-
+    
     int find(int a) 
     {
         return parent[a] == a ? a : (parent[a] = find(parent[a]));

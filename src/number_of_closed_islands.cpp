@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// Solutions works for 31/47 testcases.
 // For iterative solution, refer https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves
 class Solution 
 {
@@ -43,10 +42,11 @@ private:
         if (i < 0 || i >= m || j < 0 || j >= n) return false;
         if (grid[i][j] == 1 || grid[i][j] == -1) return true;
         grid[i][j] = 1;
-        return sweepZeros(grid, i - 1, j) && 
-               sweepZeros(grid, i + 1, j) &&
-               sweepZeros(grid, i, j - 1) &&
-               sweepZeros(grid, i, j + 1);
+        bool b1 = sweepZeros(grid, i - 1, j);
+        bool b2 = sweepZeros(grid, i + 1, j);
+        bool b3 = sweepZeros(grid, i, j - 1);
+        bool b4 = sweepZeros(grid, i, j + 1);
+        return b1 && b2 && b3 && b4;
     }
 };
 
