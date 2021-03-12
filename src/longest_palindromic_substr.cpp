@@ -15,6 +15,33 @@
 
 using namespace std;
 
+class Solution
+{
+public:
+    string longestPalindrome(string s)
+    {
+        const int n = s.size();
+        vector<vector<bool>> dp(n + 1, vector<bool>(n + 1, false));
+        for (int i = 0; i < n; ++i) dp[i][i] = true;
+        int longest = 0, begin = 0, end = 0;
+        for (int i = n - 1; i >= 0; --i)
+        {
+            for (int j = i + 1; j < n; ++j)
+            {
+                cout << "i: " << i << ", j: " << j << "\n";
+                dp[i][j] = ((s[i] == s[j]) && (j - i < 2 || dp[i + 1][j - 1]));
+                if (dp[i][j] && j - i + 1 > longest)
+                {
+                    longest = j - i + 1;
+                    begin = i; end = j;
+                    cout << "begin: " << begin << ", end: " << end << "\n";
+                }
+            }
+        }
+        return n ? s.substr(begin, end - begin + 1) : "";
+    }
+};
+
 using palin_pair = pair<int, int>;
 
 // This function builds upon the initial seed passed from its callee.
@@ -59,20 +86,10 @@ string longest_palindromic_substr(const string& s)
 	return max_size ? s.substr(r.first, 1 + r.second - r.first) : "";
 }
 
-/*int main()
+int main()
 {
-	vector<string> v = {"abcddcbaxxxyyyyyyxxx", "xyabba", "sjfgkfdksffl", "abad", "xyaab", "daba", "aaa", "aa", "a", "", "aaaa"};
-	//string s = "abcddcbaxxxyyyyyyxxx";
-	//string s = "xyabba";
-	//string s = "sjfgkfdksffl";
-	//string s = "abad";
-	//string s = "aaa";
-	//string s = "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc";
-	//string s = "sbppbpsooos";
-	//string s = "aaaabbcccdcccbbaaaabbcccdcccbbaaaa";
-	//string s = "aaaabbcbbaaaabbcbbaaaa";
-	for (auto s : v)
-	  cout << "longest palindromic substring for: " << s << " -> " << longest_palindromic_substr(s) << "\n";
-
-	return 0;
-}*/
+    Solution o;
+    string res = o.longestPalindrome("cbbd");
+    cout << "res: " << res << "\n";
+    return 0;
+}
