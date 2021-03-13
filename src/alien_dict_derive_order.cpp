@@ -40,8 +40,7 @@ public:
                     }
                     break;
                 }
-                
-                if (j == len - 1 and cur.size() > nex.size()) return "";
+                if (j == minlen - 1 and w1.size() > w2.size()) return "";
             }
         }
         
