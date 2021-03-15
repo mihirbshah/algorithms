@@ -121,7 +121,7 @@ int main()
     //int n = 123;
     //int n = 12345;
     //int n = 1234567;
-    int n = 100000;
+    int n = 00;
     Solution o;
     string res = o.numberToWords(n);
     cout << "input: " << n << ", res: " << res << "\n";
