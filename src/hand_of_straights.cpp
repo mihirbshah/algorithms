@@ -12,9 +12,10 @@
 #include <vector>
 #include <tuple>
 #include "util.h"
+#include <map>
 
 using namespace std;
-
+/*
 bool hand_of_straights(vector<int> hand, int w)
 {
 	// If hand size is not a multiple of w then we can't arrange the hand
@@ -88,6 +89,29 @@ bool hand_of_straights(vector<int> hand, int w)
 
 	return true;
 }
+*/
+class Solution 
+{
+public:
+    bool isNStraightHand(vector<int>& hand, int w) 
+    {
+        map<int, int> cnt;
+        for(auto i : hand) ++cnt[i];
+        
+        while (cnt.size())
+        {
+            int n = cnt.begin()->first;
+            for (int i = 1; i < w; ++i) 
+            {
+                if (!cnt.count(n + i)) return false;
+                --cnt[n + i];
+            }
+            if (cnt.begin()->second) --cnt.begin()->second;
+            else cnt.erase(n);
+        }
+        return true;
+    }
+};
 
 /*
 int main()
