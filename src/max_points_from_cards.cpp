@@ -6,6 +6,7 @@ using namespace std;
 
 int maxScore(vector<int>& cardPoints, int k)
 {
+  /*
   int left = accumulate(cardPoints.begin(), cardPoints.begin()+k, 0);
   int right = 0, res = left, n = cardPoints.size();
   for (int i = 0; i < k; ++i)
@@ -15,7 +16,18 @@ int maxScore(vector<int>& cardPoints, int k)
     res = max(res, left + right);
   }
 
-  return res;  
+  return res;
+  */
+
+    int res = accumulate(cardPoints.begin(), cardPoints.begin() + k, 0);
+    int l = k - 1, r = cardPoints.size() - 1, lsum = res, rsum = 0;
+    while (l >= 0)
+    {
+        lsum -= cardPoints[l--];
+        rsum += cardPoints[r--];
+        res = max(res, lsum + rsum);
+    }
+    return res;
 }
 
 int main()
