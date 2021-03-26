@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include "util.h"
+#include <list>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ using namespace std;
   At some point the count one or both of the two characters will be lesser than the 3rd character, and that time, we can handle
   the 3rd character as well. 
 */
+/*
 string _longestDiverseString(int lg, int med, int sm, char ch_lg = 'a', char ch_med = 'b', char ch_sm = 'c') {
     // Following two IF conditions literally just ensure that the order a >= b >= c is observed to 
     // enable us to handle 2 characters at a time.
@@ -38,6 +40,73 @@ string _longestDiverseString(int lg, int med, int sm, char ch_lg = 'a', char ch_
     // Generate the string so far and append the leftover using a recursive call
     return string(use_lg, ch_lg) +  string(use_med, ch_med) + _longestDiverseString(lg - use_lg, med - use_med, sm, ch_lg, ch_med, ch_sm);
 }
+*/
+
+string _longestDiverseString(int lg, int med, int sm, char ch_lg = 'a', char ch_med = 'b', char ch_sm = 'c')
+{
+    vector<int> vi = {lg, med, sm};
+    sort(vi.begin(), vi.end(), std::greater<int>());
+    vector<char> vc(3);
+    for (int i = 0; i < 3; ++i)
+    {
+        if (vi[i] == lg) 
+        {
+            vc[i] = ch_lg;
+            lg = INT_MAX;
+        }
+        else if (vi[i] == med) 
+        {
+            vc[i] = ch_med;
+            med = INT_MAX;
+        }
+        else if (vi[i] == sm) 
+        {
+            vc[i] = ch_sm;
+            sm = INT_MAX;
+        }
+    }
+    
+    list<char> ll;
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < vi[i]; ++j) 
+            ll.push_back(vc[j]);
+     
+    if (ll.size() < 3)
+    {
+        string res;
+        for (auto c : ll) res += c;
+        return res;
+    }
+    
+    auto l = ll.begin(), r = ll.begin();
+    ++l; ++l;
+    for (int j = 0; j < vi[0]; ++j) ++r;
+
+    int cnt1 = vi[1] + vi[2], cnt2 = 0;
+    while (cnt1 > 0 && cnt2 < ll.size())
+    {
+        cout << "l: " << *l << ", r: " << *r << "\n";
+        auto it1 = l, it2 = l;
+        --it1; --it2; --it2;
+        if (*l == *it1 && *l == *it2)
+        {
+            ll.insert(l++, *r++);
+            --cnt1;
+            ++cnt2;
+        }
+        else
+        {
+            ++l;
+            ++cnt2;
+        }
+    }
+    string res;
+    for (auto it = ll.begin(); it != l; ++it)
+        res += *it;
+    
+    return res;
+}
+
 
 /*
 string longestDiverseString(int a, int b, int c)
@@ -89,6 +158,6 @@ int main()
     string res1 = _longestDiverseString(c1, b1, a1, 'c', 'b', 'a');
     //string res2 = longestDiverseString(a1, b1, c1);
     cout << "res1: " << res1 << "\n";
-    cout << "res2: " << res2 << "\n";
+    //cout << "res2: " << res2 << "\n";
     return 0;
 }

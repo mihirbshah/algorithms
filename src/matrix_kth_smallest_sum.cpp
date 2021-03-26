@@ -13,7 +13,7 @@ and store the result in res.
 Now, repeat the same steps with res (as row-1) and row-3 (as row-2). This way, continue till the last row. 
 
 Optimization:
-At every step, once we calculate res, we only need to lowest min(k, res,size()) number of elements from it 
+At every step, once we calculate res, we only need the lowest min(k, res.size()) number of elements from it 
 for the next iteration. This way we can prune the element space to keep it in check. 
 
 The reason why this is true is because, let's say we have 2 sets (x1, x2, x3) and (y1, y2, y3).
@@ -25,6 +25,7 @@ class Solution
 public:
     int kthSmallest(vector<vector<int>>& mat, int k)
     {
+        /*
         vector<int> row = mat[0];
         for (int i = 1; i < mat.size(); ++i)
         {
@@ -41,6 +42,39 @@ public:
             row = move(nr);
         }
         return row.back();
+        */
+        vector<int> cols(mat.size(), 0);
+        int sum = 0;
+        for (int i = 0; i < cols.size(); ++i) sum += mat[i][cols[i]];
+        int res = 0;
+        func(mat, cols, sum, k - 1, res);
+        return res;
+    }
+    
+private:
+    void func(vector<vector<int>>& mat, vector<int>& cols, int sum, int k, int& res)
+    {
+        if (k == 1) 
+        {
+            res = sum;
+            return;
+        }
+        
+        int rsum = INT_MAX, index = -1;
+        for (int i = 0; i < cols.size(); ++i)
+        {
+            int nsum = sum;
+            nsum -= mat[i][cols[i]];
+            nsum += mat[i][cols[i] + 1];
+            if (nsum < rsum)
+            {
+                rsum = nsum;
+                index = i;
+            }
+        }
+        
+        ++cols[index];
+        func(mat, cols, rsum, k - 1, res);
     }
 };
 
