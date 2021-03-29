@@ -4,124 +4,37 @@
 #include <vector>
 #include "util.h"
 
-using VList = vector<vector<int>>;
 
-/*
-// Partially working solution
 class Solution 
 {
 public:
-    VList intervalIntersection(VList& listi, VList& listj) 
+    using VList = vector<vector<int>>;
+    VList intervalIntersection(VList& A, VList& B) 
     {
-        int csi = -1, cei = -1, csj = -1, cej = -1, pei = -1, pej = -1;
-        int indexi = 0, indexj = 0;
-        
-        setStartEnd(listi, indexi, csi, cei);
-        setStartEnd(listj, indexj, csj, cej);
+        int i = 0, j = 0;
+        const int m = A.size(), n = B.size();
         VList res;
-        while (isValid(csi) && isValid(cei) &&
-               isValid(csj) && isValid(cej))
+        while (i < m && j < n)
         {
-            cout << "indexi: " << indexi
-                 << ", indexj: " << indexj
-                 << ", csi: " << csi
-                 << ", cei: " << cei
-                 << ", csj: " << csj
-                 << ", cej: " << cej
-                 << ", pei: " << pei
-                 << ", pej: " << pej
-                 << "\n";
-            exhaustPrev(res, pei, pej, csi, cei);
-            exhaustPrev(res, pej, pei, csj, cej);
-            if (csj <= cei && csi <= cej) res.push_back({max(csi, csj), min(cei, cej)});
-            setPrev(pei, pej, cei, cej);
-            ++indexi; ++indexj;
-            setStartEnd(listi, indexi, csi, cei);
-            setStartEnd(listj, indexj, csj, cej);
+            if (intersect(A[i], B[j]))
+            {
+                res.push_back({max(A[i][0], B[j][0]), min(A[i][1], B[j][1])});
+            }
+            
+            if (A[i][1] < B[j][1]) ++i;
+            else ++j;
         }
-                cout << "indexi: " << indexi
-                 << ", indexj: " << indexj
-                 << ", csi: " << csi
-                 << ", cei: " << cei
-                 << ", csj: " << csj
-                 << ", cej: " << cej
-                 << ", pei: " << pei
-                 << ", pej: " << pej
-                 << "\n";
-
-        exhaustPrev(res, pei, pej, csi, cei);
-        exhaustPrev(res, pej, pei, csj, cej);
-        
         return res;
     }
     
 private:
-    void setPrev(int& pei, int& pej, int cei, int cej)
+    bool intersect(const vector<int>& a, const vector<int>& b)
     {
-        pei = -1; pej = -1;
-        if (cei < cej)
-        {
-            pei = -1; pej = cej;
-        }
-        else
-        {
-            pei = cei; pej = -1;
-        }
-    }
-    
-    void exhaustPrev(VList& res, int pex, int pey, int& csx, int cex)
-    {
-        if (!isValid(pex) && isValid(pey) && isValid(csx) && isValid(cex))
-        {
-            if (csx <= pey)
-            {
-                res.push_back({csx, pey});
-                csx = min(pey + 1, cex);
-            }
-        }
-    }
-    
-    bool isValid(const int& i)
-    {
-        return i >= 0;
-    }
-    
-    void setStartEnd(const VList& l, int i, int& cs, int& ce)
-    {
-        if (i >= l.size())
-        {
-            cs = -1; ce = -1; 
-            return;
-        }
-        
-        const int n = l[i].size();
-        if (n) 
-        {
-            cs = l[i][0]; ce = l[i][n - 1];
-        }
-        else 
-        {
-            cs = -1; ce = -1;
-        }
+        return (a[0] <= b[0] && a[1] >= b[1]) || (a[0] <= b[0] && a[1] <= b[1] && a[1] >= b[0]) ||
+               (b[0] <= a[0] && b[1] >= a[1]) || (b[0] <= a[0] && b[1] <= a[1] && b[1] >= a[0]);
     }
 };
-*/
 
-class Solution 
-{
-public:
-    VList intervalIntersection(VList& A, VList& B) 
-    {
-        VList res;
-        for (auto i = 0, j = 0; i < A.size() && j < B.size(); A[i][1] < B[j][1] ? ++i : ++j) {
-            auto start = max(A[i][0], B[j][0]);
-            auto end = min(A[i][1], B[j][1]);
-            if (start <= end) 
-                res.push_back({start, end});
-        }
-        return res;    
-    }
-};  
 
 int main()
 {
