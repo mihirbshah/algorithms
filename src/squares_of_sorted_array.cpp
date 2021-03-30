@@ -1,0 +1,29 @@
+// 977. Squares of a Sorted Array
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        vector<int> res(A.size());
+        int l = 0, r = A.size() - 1;
+        for (int k = A.size() - 1; k >= 0; k--) {
+            if (abs(A[r]) > abs(A[l])) res[k] = A[r] * A[r--];
+            else res[k] = A[l] * A[l++];
+        }
+        return res;
+    }
+};
+
+int main()
+{
+    vector<int> nums({-1});
+    Solution o;
+    vector<int> res = o.sortedSquares(nums);
+    for (auto& n : res) cout << n << " ";
+    cout << "\n";
+    return 0;
+}
