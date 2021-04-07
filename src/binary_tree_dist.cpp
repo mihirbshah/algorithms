@@ -6,6 +6,44 @@
 
 using namespace std;
 
+
+class Solution 
+{
+public:
+    int findDistance(TreeNode* root, int p, int q) 
+    {
+        int res = 0;
+        dfs(root, p, q, 0, res);
+        return res;
+    }
+    
+private:
+    int dfs(TreeNode* root, int p, int q, int depth, int& res)
+    {
+        if (!root) return -1;
+        
+        int left = dfs(root->left, p, q, depth + 1, res);
+        int right = dfs(root->right, p, q, depth + 1, res);
+        
+        if (root->val == p || root->val == q) 
+        {
+            if (!res && (left != -1 || right != -1)) res = max(left, right) - depth;
+            return depth;
+        }
+        
+        if (left != -1 && right != -1)
+        {
+            if (!res) res = left + right;
+            return res;
+        }
+        
+        if (left != -1 || right != -1) return max(left, right);
+        
+        return -1;
+    }
+};
+
+/*
 class Solution 
 {
 public:
@@ -57,7 +95,7 @@ private:
         return false;
     }
 };
-
+*/
 
 
 int main()

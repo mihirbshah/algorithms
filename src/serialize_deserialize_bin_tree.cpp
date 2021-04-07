@@ -11,6 +11,7 @@
 using namespace std;
 using TreeNode = TreeUtils::TreeNode;
 
+/*
 class Codec
 {
 public:
@@ -59,7 +60,52 @@ private:
         return nullptr;
     }
 };
+*/
 
+class Codec
+{
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root)
+    {
+        int h = getLevel(root);
+        string res(pow(2, h) - 1, '');
+        _serialize(root, res, 0, res.size() - 1);
+        return res;
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data)
+    {
+        return _deserialize(data, 0, data.size() - 1);
+    }
+
+private:
+    int getLevel(TreeNode* root)
+    {
+        if (!root) return 0;
+        return 1 + max(getLevel(root->left), getLevel(root->right));
+    }
+    
+    void _serialize(TreeNode* node, string& res, int l, int r)
+    {
+        int mid = l + r / 2;
+        res[mid] = node ? node->val : 'X';
+        _serialize(node->left, res, l, mid - 1);
+        _serialize(node->right, res, mid + 1, r);
+    }
+    
+    TreeNode* _deserialize(stirng& data, int l, int r)
+    {
+        int mid = l + r / 2;
+        if (data[mid] == 'X') return nullptr;
+        TreeNode* node = new TreeNode(data[mid] - '0');
+        node->left = _deserialize(data, l, mid - 1);
+        node->right = _deserialize(data, mid + 1, r);
+        return node;
+    }
+};
 
 int main()
 {

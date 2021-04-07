@@ -6,17 +6,21 @@
  */
 
 #include <iostream>
-#include "heap.h"
+#include "util.h"
+#include <algorithm>
+#include <vector>
 
-/*int main()
+using namespace std;
+
+int main()
 {
-	heap h;
-	h.make_heap({30, 20, 10, 45});
-	h.print();
-	std::cout << "\ntop: " << h.pop() << "\n";
-	h.print();
-
-	return 0;
-}*/
+    vector<int> v({1,2,3,4,5,6});
+    auto it = remove_if(v.begin(), v.end(), [&](int e){ return e == 6; });
+    cout << distance(it, v.end()) << "\n";
+    //v.erase(remove_if(v.begin(), v.end(), [&](int e){ return e == 5; }));
+    //v.erase(v.end());
+    //print_container(v.begin(), v.end());
+    return 0;
+}
 
 

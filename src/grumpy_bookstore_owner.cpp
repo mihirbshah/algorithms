@@ -3,12 +3,14 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include "util.h"
 
 using namespace std;
 
 class Solution 
 {
 public:
+    /*
     int maxSatisfied(vector<int>& cs, vector<int>& grumpy, int X) 
     {
         auto satisfied = 0, m_add_satisfied = 0, add_satisfied = 0;
@@ -20,6 +22,28 @@ public:
             m_add_satisfied = max(m_add_satisfied, add_satisfied);
         }
         return satisfied + m_add_satisfied;
+    }
+    */
+    int maxSatisfied(vector<int>& cs, vector<int>& grumpy, int X) 
+    {
+        const int n = cs.size();
+        vector<int> s1(n + 1, 0), s2(n + 1, 0);
+        for (int i = 0; i < n; ++i)
+        {
+            s1[i + 1] = s1[i] + (grumpy[i] ? 0 : cs[i]);
+            s2[i + 1] = s2[i] + cs[i];
+        }
+                
+        int res = INT_MIN;
+        for (int l = 1; l <= n - X + 1; ++l)
+        {
+            int r = l + X - 1;
+            const int satisfiedCustToLeftOfWindow = s1[l - 1];
+            const int satisfiedCustToRightOfWindow = s1[n] - s1[r];
+            const int satisfiedCustomersInWindow = s2[r] - s2[l - 1];
+            res = max(res,  satisfiedCustToLeftOfWindow + satisfiedCustToRightOfWindow + satisfiedCustomersInWindow);
+        }
+        return res;
     }
 };
 

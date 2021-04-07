@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include "util.h"
+#include <stack>
 
 using namespace std;
 
@@ -53,6 +54,7 @@ public:
     }
     */
     
+    /*
     string removeDuplicates(string s, int k) 
     {
         cout << "s: " << s << "\n";
@@ -94,6 +96,34 @@ public:
         }
         
         return s == s1 ? s : removeDuplicates(s1, k);
+    }
+    */
+    
+    string removeDuplicates(string s, int k) 
+    {
+        stack<pair<char, int>> stk;
+        for (auto c : s)
+        {
+            if (!stk.empty() && stk.top().first == c) 
+            {
+                ++stk.top().second;
+                if (stk.top().second >= k) stk.pop();
+            }
+            else
+            {
+                stk.push({c, 1});
+            }
+        }
+        
+        string res;
+        while (!stk.empty())
+        {
+            res.append(stk.top().second, stk.top().first);
+            stk.pop();
+        }
+        
+        reverse(res.begin(), res.end());
+        return res;
     }
 };
 
