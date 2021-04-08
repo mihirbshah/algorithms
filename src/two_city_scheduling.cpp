@@ -46,7 +46,7 @@ public:
             for (auto ss: s) cout << "i: " << ss.first << ", diff: " << ss.second << "\n";
             while (diff > 0)
             {
-                cout << "diff: " << diff << ", first: " << s.begin()->first << "\n";
+                    cout << "diff: " << diff << ", first: " << s.begin()->first << "\n";
                 vmin.insert(s.begin()->first);
                 vmax.erase(s.begin()->first);
                 s.erase(s.begin());
