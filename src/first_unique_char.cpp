@@ -24,7 +24,7 @@ public:
             res = min(res, v);
         }
         
-        return res;
+        return res == INT_MAX ? -1 : res;
     }
 };
 
