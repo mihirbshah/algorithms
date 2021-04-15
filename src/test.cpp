@@ -9,17 +9,14 @@
 #include "util.h"
 #include <algorithm>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    vector<int> v({1,2,3,4,5,6});
-    auto it = remove_if(v.begin(), v.end(), [&](int e){ return e == 6; });
-    cout << distance(it, v.end()) << "\n";
-    //v.erase(remove_if(v.begin(), v.end(), [&](int e){ return e == 5; }));
-    //v.erase(v.end());
-    //print_container(v.begin(), v.end());
+    string s = string(1, 'a') + "-" + string(1, 'z');
+    cout << s << "\n";
     return 0;
 }
 
