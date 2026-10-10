@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Cyclical shift of rows and columns in a square grid
 class Solution {
 public:
     vector<vector<int>> cyclicShift(int n, vector<vector<int>>& grid, vector<int>& rowShift, vector<int>& colShift) {
